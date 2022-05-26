@@ -162,9 +162,19 @@
     <ClCompile Include="src\rendering\IndexBuffer.cpp" />
     <ClCompile Include="src\Source.cpp" />
     <ClCompile Include="src\rendering\glad.c" />
+    <ClCompile Include="src\rendering\VertexBuffer.cpp" />
+    <ClCompile Include="src\rendering\VertexBufferElement.cpp" />
+    <ClCompile Include="src\rendering\VertexArray.cpp" />
+    <ClCompile Include="src\rendering\VertexBufferLayout.cpp" />
+    <ClCompile Include="src\rendering\Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\rendering\IndexBuffer.h" />
+    <ClInclude Include="src\rendering\VertexBuffer.h" />
+    <ClInclude Include="src\rendering\VertexBufferElement.h" />
+    <ClInclude Include="src\rendering\VertexArray.h" />
+    <ClInclude Include="src\rendering\VertexBufferLayout.h" />
+    <ClInclude Include="src\rendering\Texture2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
