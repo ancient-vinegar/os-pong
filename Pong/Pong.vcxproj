@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\rendering\Shader.cpp" />
     <ClCompile Include="src\rendering\IndexBuffer.cpp" />
     <ClCompile Include="src\Source.cpp" />
     <ClCompile Include="src\rendering\glad.c" />
@@ -169,6 +170,7 @@
     <ClCompile Include="src\rendering\Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\rendering\Shader.h" />
     <ClInclude Include="src\rendering\IndexBuffer.h" />
     <ClInclude Include="src\rendering\VertexBuffer.h" />
     <ClInclude Include="src\rendering\VertexBufferElement.h" />
