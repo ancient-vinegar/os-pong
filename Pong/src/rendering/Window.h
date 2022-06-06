@@ -6,6 +6,9 @@
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
+#include "IndexBuffer.h"
+#include "VertexArray.h"
+#include "Shader.h"
 
 namespace rendering {
 	class Window
@@ -18,6 +21,9 @@ namespace rendering {
 		Window(int width, int height, const char* title);
 		~Window();
 
+		GLFWwindow* GetWindow() { return window; }
+
+		void Draw(const VertexArray& vertexArray, const IndexBuffer& indexBuffer, const Shader& shader) const;
 		void Clear();
 		void EndFrame();
 		inline bool WindowShouldClose() { return glfwWindowShouldClose(window); }

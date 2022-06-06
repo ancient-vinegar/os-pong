@@ -34,6 +34,14 @@ rendering::Window::~Window()
 	glfwTerminate();
 }
 
+void rendering::Window::Draw(const VertexArray& vertexArray, const IndexBuffer& indexBuffer, const Shader& shader) const
+{
+	shader.Bind();
+	vertexArray.Bind();
+	indexBuffer.Bind();
+	glDrawElements(GL_TRIANGLES, indexBuffer.GetCount(), GL_UNSIGNED_INT, nullptr);
+}
+
 void rendering::Window::Clear()
 {
 	glClear(GL_COLOR_BUFFER_BIT);

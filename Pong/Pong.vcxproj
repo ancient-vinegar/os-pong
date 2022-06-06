@@ -159,6 +159,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\rendering\Camera2D.cpp" />
+    <ClCompile Include="src\input\Keyboard.cpp" />
+    <ClCompile Include="src\input\KeyboardState.cpp" />
     <ClCompile Include="src\rendering\imgui\imgui.cpp" />
     <ClCompile Include="src\rendering\imgui\imgui_demo.cpp" />
     <ClCompile Include="src\rendering\imgui\imgui_draw.cpp" />
@@ -179,6 +182,10 @@
     <ClCompile Include="src\rendering\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\rendering\Camera2D.h" />
+    <ClInclude Include="src\input\Keyboard.h" />
+    <ClInclude Include="src\input\Key.h" />
+    <ClInclude Include="src\input\KeyboardState.h" />
     <ClInclude Include="src\rendering\imgui\imconfig.h" />
     <ClInclude Include="src\rendering\imgui\imgui.h" />
     <ClInclude Include="src\rendering\imgui\imgui_impl_glfw.h" />
@@ -197,6 +204,9 @@
     <ClInclude Include="src\rendering\Texture2D.h" />
     <ClInclude Include="src\rendering\Window.h" />
     <ClInclude Include="src\rendering\stb_image\stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\basic.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
