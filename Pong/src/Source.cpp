@@ -122,6 +122,10 @@ int main() {
 			ballVelocity = glm::vec2(ballVelocity.x * -1, ballVelocity.y * -1);
 		}
 
+		if (ballYpos <= -240.0f || ballYpos >= 240.0f) {
+			ballVelocity = glm::vec2(ballVelocity.x, ballVelocity.y *= -1);
+		}
+
 		if (ballXpos <= -320.0f) {
 			Reset();
 		}
