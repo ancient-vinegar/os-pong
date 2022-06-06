@@ -114,11 +114,11 @@ int main() {
 			player2pos -= player2Speed;
 		}
 
-		if ((ballXpos <= -295.0f) && (ballYpos <= player1pos + 240.0f && ballYpos >= player1pos - 240.0f)) {
+		if ((ballXpos <= -295.0f) && (ballYpos <= player1pos + 40.0f && ballYpos >= player1pos - 40.0f)) {
 			ballVelocity = glm::vec2(ballVelocity.x * -1, ballVelocity.y * -1);
 		}
 
-		if ((ballXpos >= 295.0f) && (ballYpos <= player2pos + 240.0f && ballYpos >= player2pos - 240.0f)) {
+		if ((ballXpos >= 295.0f) && (ballYpos <= player2pos + 40.0f && ballYpos >= player2pos - 40.0f)) {
 			ballVelocity = glm::vec2(ballVelocity.x * -1, ballVelocity.y * -1);
 		}
 
