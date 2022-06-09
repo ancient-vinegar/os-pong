@@ -78,6 +78,9 @@
     <ClCompile Include="src\rendering\Camera2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\rendering\BMFont.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\rendering\IndexBuffer.h">
@@ -146,8 +149,18 @@
     <ClInclude Include="src\rendering\Camera2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\rendering\BMFont.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\basic.shader" />
+    <None Include="res\fonts\Courier32.fnt" />
+    <None Include="res\shaders\text2d.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\fonts\Courier32_0.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

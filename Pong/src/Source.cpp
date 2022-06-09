@@ -1,4 +1,6 @@
 
+#define _USE_MATH_DEFINES
+
 #include "rendering/Window.h"
 #include "rendering/VertexArray.h"
 #include "rendering/VertexBuffer.h"
@@ -12,6 +14,7 @@
 #include "glm/glm.hpp"
 
 #include <iostream>
+#include <cmath>
 
 float player1pos = 0.0f;
 float player2pos = 0.0f;
@@ -26,6 +29,15 @@ void Reset() {
 	ballYpos = 0.0f;
 	player1pos = 0.0f;
 	player2pos = 0.0f;
+}
+
+glm::vec2 RotateVec2(glm::vec2 vector, float radians) {
+	return glm::vec2(vector.x * std::cos(radians) - vector.y * std::sin(radians),
+		vector.x * std::sin(radians) + vector.y * std::cos(radians));
+}
+
+float DegreesToRadians(float degrees) {
+	return degrees * (M_PI / 180.0f);
 }
 
 int main() {
@@ -115,10 +127,24 @@ int main() {
 		}
 
 		if ((ballXpos <= -295.0f) && (ballYpos <= player1pos + 40.0f && ballYpos >= player1pos - 40.0f)) {
+			float ballHitPos = player1pos - ballYpos;
+			if (ballHitPos < 0.0f) {
+				ballVelocity = RotateVec2(ballVelocity, DegreesToRadians(-45.0f * (ballHitPos / 40.0f)));
+			}
+			if (ballHitPos > 0.0f) {
+				ballVelocity = RotateVec2(ballVelocity, DegreesToRadians(45.0f * (ballHitPos / 40.0f)));
+			}
 			ballVelocity = glm::vec2(ballVelocity.x * -1, ballVelocity.y * -1);
 		}
 
 		if ((ballXpos >= 295.0f) && (ballYpos <= player2pos + 40.0f && ballYpos >= player2pos - 40.0f)) {
+			float ballHitPos = player2pos - ballYpos;
+			if (ballHitPos < 0.0f) {
+				ballVelocity = RotateVec2(ballVelocity, DegreesToRadians(-45.0f * (ballHitPos / 40.0f)));
+			}
+			if (ballHitPos > 0.0f) {
+				ballVelocity = RotateVec2(ballVelocity, DegreesToRadians(45.0f * (ballHitPos / 40.0f)));
+			}
 			ballVelocity = glm::vec2(ballVelocity.x * -1, ballVelocity.y * -1);
 		}
 

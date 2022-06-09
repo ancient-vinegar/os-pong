@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\rendering\BMFont.cpp" />
     <ClCompile Include="src\rendering\Camera2D.cpp" />
     <ClCompile Include="src\input\Keyboard.cpp" />
     <ClCompile Include="src\input\KeyboardState.cpp" />
@@ -182,6 +183,7 @@
     <ClCompile Include="src\rendering\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\rendering\BMFont.h" />
     <ClInclude Include="src\rendering\Camera2D.h" />
     <ClInclude Include="src\input\Keyboard.h" />
     <ClInclude Include="src\input\Key.h" />
@@ -206,7 +208,12 @@
     <ClInclude Include="src\rendering\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\fonts\Courier32.fnt" />
     <None Include="res\shaders\basic.shader" />
+    <None Include="res\shaders\text2d.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\fonts\Courier32_0.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
