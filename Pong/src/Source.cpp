@@ -9,6 +9,8 @@
 #include "rendering/Shader.h"
 #include "rendering/Camera2D.h"
 
+#include "rendering/BMFont.h"
+
 #include "input/Keyboard.h"
 
 #include "glm/glm.hpp"
@@ -46,6 +48,8 @@ int main() {
 	rendering::Camera2D camera(640.0f, 480.0f, -1.0f, 1.0f);
 	input::Keyboard keyboard(window.GetWindow());
 
+	rendering::BMFont font("res/fonts/Courier32.fnt", 512);
+
 	float player1Speed = 5.0f;
 	float player2Speed = 5.0f;
 	float ballSpeed = 5.0f;
@@ -68,7 +72,7 @@ int main() {
 
 	std::cout << "Ball Vertices :: " << sizeof ballVertices << std::endl;
 
-	unsigned int quadIndices[]{
+	unsigned int quadIndices[] = {
 		0, 1, 2,
 		2, 3, 0
 	};
@@ -88,11 +92,33 @@ int main() {
 
 	rendering::IndexBuffer quadBuff(quadIndices, sizeof quadIndices);
 
+	glm::mat4 camView = camera.GetMatrix();
+
 	rendering::Shader shader("res/shaders/basic.shader");
 	shader.Bind();
-	glm::mat4 camView = camera.GetMatrix();
 	shader.SetUniformMat4f("view", camView);
 	shader.SetUniform2f("model", 0.0f, 0.0f);
+
+	//-----------------------------------------------------------------------
+	std::string pspace = "Press Space!";
+	auto spaceVertices = font.GetStringVertices(pspace);
+	rendering::VertexBuffer pressSpaceVb(&spaceVertices[0].X, sizeof spaceVertices);
+	rendering::VertexBufferLayout textLayout;
+	textLayout.PushFloat(2);
+	textLayout.PushFloat(2);
+	textLayout.PushFloat(1);
+	rendering::VertexArray psArray;
+	psArray.AddBuffer(pressSpaceVb, textLayout);
+	auto spaceIndices = font.GetQuadIndices(pspace.length());
+	rendering::IndexBuffer pressSpaceIb(&spaceIndices[0], sizeof spaceIndices);
+	rendering::Shader textShader = font.GenerateShader();
+	textShader.Bind();
+	textShader.SetUniformMat4f("view", camView);
+	textShader.SetUniform2f("model", 0.0f, 0.0f);
+	textShader.SetUniform4f("u_textColour", 1.0f, 0.8f, 0.8f, 1.0f);
+	textShader.SetUniform1i("u_Texture", 1);
+	font.Pages[0].Texture.Bind(1);
+	//------------------------------------------------------------------------
 
 	while (!window.WindowShouldClose()) {
 		keyboard.Update(window.GetWindow());
@@ -101,9 +127,11 @@ int main() {
 			break;
 		}
 
-		if (!ballRolling)
-		if (keyboard.KeyPressed(GLFW_KEY_SPACE)) {
-			ballVelocity = glm::vec2(ballSpeed, 0.0f);
+		if (!ballRolling) {
+			if (keyboard.KeyPressed(GLFW_KEY_SPACE)) {
+				ballVelocity = glm::vec2(ballSpeed, 0.0f);
+				ballRolling = true;
+			}
 		}
 
 		if (keyboard.KeyPressed(GLFW_KEY_R)) {
@@ -165,8 +193,7 @@ int main() {
 
 		window.Clear();
 
-
-
+		shader.Bind();
 		shader.SetUniform2f("model", -300.0f, player1pos);
 		window.Draw(playerArray, quadBuff, shader);
 
@@ -175,6 +202,8 @@ int main() {
 
 		shader.SetUniform2f("model", ballXpos, ballYpos);
 		window.Draw(ballArray, quadBuff, shader);
+
+		window.Draw(psArray, pressSpaceIb, textShader);
 
 		window.EndFrame();
 	}

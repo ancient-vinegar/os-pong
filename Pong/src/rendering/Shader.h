@@ -12,6 +12,7 @@ namespace rendering {
 		unsigned int m_RendererID;
 		std::unordered_map<std::string, int> m_UniformCache;
 	public:
+		Shader(unsigned int rendererID);
 		Shader(const std::string& filepath);
 		~Shader();
 

@@ -7,6 +7,11 @@
 #include <sstream>
 #include <list>
 
+rendering::Shader::Shader(unsigned int rendererID)
+    : m_RendererID(rendererID)
+{
+}
+
 rendering::Shader::Shader(const std::string& filepath)
     : m_RendererID(0)
 {
